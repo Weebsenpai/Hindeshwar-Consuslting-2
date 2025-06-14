@@ -1,29 +1,30 @@
 // src/components/effects/animated-section.tsx
 'use client';
 
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState, type ElementRef } from 'react';
 import { cn } from '@/lib/utils';
 
-interface AnimatedSectionProps {
+interface AnimatedSectionProps<C extends keyof JSX.IntrinsicElements = 'div'> {
   children: ReactNode;
   className?: string;
   delay?: number; // in ms
   threshold?: number;
   animationType?: 'slideInFromBottom' | 'slideInFromLeft' | 'slideInFromRight' | 'fadeIn';
-  as?: keyof JSX.IntrinsicElements; // To allow rendering different HTML tags
+  as?: C;
 }
 
-export function AnimatedSection({
+export function AnimatedSection<C extends keyof JSX.IntrinsicElements = 'div'>({
   children,
   className,
   delay = 0,
   threshold = 0.1,
   animationType = 'slideInFromBottom',
-  as: Component = 'div', // Default to 'div'
-}: AnimatedSectionProps) {
+  as,
+}: AnimatedSectionProps<C>) {
+  const Component = as || 'div';
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false); // To animate only once
-  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<ElementRef<C>>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
