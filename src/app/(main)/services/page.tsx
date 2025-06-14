@@ -4,6 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CheckCircle, ArrowRight, BarChart3, Settings, Lightbulb, TrendingUp } from "lucide-react"; 
 import Link from "next/link";
+import service1 from "@/assets/images/dataAndAnalytics.jpg"
+import service2 from "@/assets/images/operationalExcellence.jpg"
+import service3 from "@/assets/images/digitalTransformation.jpg"
+import service4 from "@/assets/images/revenueGrowth.jpg"
+
 
 const services = [
   {
@@ -13,7 +18,7 @@ const services = [
     shortDescription: "Leverage data for strategic insights and robust planning.",
     longDescription: "Our data analysis services help you define your vision, set clear goals, and create actionable roadmaps. We analyze market trends, competitive landscapes, and internal capabilities to formulate strategies that drive sustainable growth and competitive advantage.",
     features: ["Market Analysis & Research", "Competitive Benchmarking", "Data-driven Insights", "Roadmap Creation", "Performance Metrics"],
-    image: "https://placehold.co/600x400.png",
+    image: service1,
     imageAlt: "Business professionals analyzing charts for data and analytics",
     aiHint: "data analytics charts",
     href: "/services/data-analytics"
@@ -25,7 +30,7 @@ const services = [
     shortDescription: "Optimize your operations for efficiency, productivity, and cost-effectiveness.",
     longDescription: "We help streamline your processes, enhance productivity, and reduce operational costs. Our experts identify bottlenecks, implement lean methodologies, and leverage technology to transform your operations into a high-performing engine for growth.",
     features: ["Process Optimization", "Lean Six Sigma", "Supply Chain Management", "Cost Reduction", "Technology Integration"],
-    image: "https://placehold.co/600x400.png",
+    image: service2,
     imageAlt: "Gears turning to show operational efficiency",
     aiHint: "gears efficiency",
     href: "/services/operational-excellence"
@@ -37,7 +42,7 @@ const services = [
     shortDescription: "Foster innovation and identify new growth avenues through digital solutions.",
     longDescription: "In a rapidly evolving business environment, digital transformation and innovation are key. We assist you in cultivating a culture of innovation, exploring new market opportunities, and developing products or services that meet emerging customer needs, ensuring you remain a leader in your industry.",
     features: ["Digital Strategy", "Innovation Workshops", "New Market Entry", "Product Development", "Change Management"],
-    image: "https://placehold.co/600x400.png",
+    image: service3,
     imageAlt: "Abstract digital connections and a lightbulb for innovation",
     aiHint: "digital innovation network",
     href: "/services/digital-transformation"
@@ -49,7 +54,7 @@ const services = [
     shortDescription: "Unlock new revenue streams and maximize market potential.",
     longDescription: "Our revenue growth services focus on identifying and capturing market opportunities. We help refine your sales strategies, optimize product portfolios, and develop effective go-to-market plans to accelerate growth and profitability.",
     features: ["Sales Channel Optimization", "Product Portfolio Management", "B2B Go-To-Market Strategy", "Market Expansion", "Pricing Strategies"],
-    image: "https://placehold.co/600x400.png",
+    image: service4,
     imageAlt: "Upward trending graph symbolizing revenue growth",
     aiHint: "growth graph revenue",
     href: "/services/revenue-growth"
