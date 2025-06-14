@@ -2,8 +2,9 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { CheckCircle, ArrowRight, BarChart3, Settings, Lightbulb, TrendingUp } from "lucide-react"; 
+import { CheckCircle, ArrowRight, BarChart3, Settings, Lightbulb, TrendingUp } from "lucide-react";
 import Link from "next/link";
+import { AnimatedSection } from "@/components/effects/animated-section";
 import service1 from "@/assets/images/dataAndAnalytics.jpg"
 import service2 from "@/assets/images/operationalExcellence.jpg"
 import service3 from "@/assets/images/digitalTransformation.jpg"
@@ -12,7 +13,7 @@ import service4 from "@/assets/images/revenueGrowth.jpg"
 
 const services = [
   {
-    id: "data-analytics", 
+    id: "data-analytics",
     icon: <BarChart3 className="h-12 w-12 text-primary" />,
     title: "Data & Analytics",
     shortDescription: "Leverage data for strategic insights and robust planning.",
@@ -24,7 +25,7 @@ const services = [
     href: "/services/data-analytics"
   },
   {
-    id: "operational-excellence", 
+    id: "operational-excellence",
     icon: <Settings className="h-12 w-12 text-primary" />,
     title: "Operational Excellence",
     shortDescription: "Optimize your operations for efficiency, productivity, and cost-effectiveness.",
@@ -36,7 +37,7 @@ const services = [
     href: "/services/operational-excellence"
   },
   {
-    id: "digital-transformation", 
+    id: "digital-transformation",
     icon: <Lightbulb className="h-12 w-12 text-primary" />,
     title: "Digital Transformation",
     shortDescription: "Foster innovation and identify new growth avenues through digital solutions.",
@@ -47,8 +48,8 @@ const services = [
     aiHint: "digital innovation network",
     href: "/services/digital-transformation"
   },
-   {
-    id: "revenue-growth", 
+  {
+    id: "revenue-growth",
     icon: <TrendingUp className="h-12 w-12 text-primary" />,
     title: "Revenue Growth Strategies",
     shortDescription: "Unlock new revenue streams and maximize market potential.",
@@ -64,71 +65,85 @@ const services = [
 export default function ServicesPage() {
   return (
     <div className="bg-background text-foreground">
-      <section className="py-16 md:py-24 bg-secondary">
-        <div className="container text-center">
-          <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">Our Services</h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground sm:text-xl">
+      <AnimatedSection animationType="fadeIn">
+        <section className="py-16 md:py-24 bg-secondary">
+          <div className="container text-center">
+            <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">Our Services</h1>
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground sm:text-xl">
             Comprehensive solutions to empower your business and drive lasting success with Hindeshwar Consulting.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24">
-        <div className="container space-y-20">
-          {services.map((service, index) => (
-            <div key={service.id} id={service.id} className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-16`}>
-              <div className={`aspect-video overflow-hidden rounded-lg shadow-2xl ${index % 2 !== 0 ? "lg:order-last" : ""}`}>
-                <Image
-                  src={service.image}
-                  alt={service.imageAlt}
-                  width={600}
-                  height={400}
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                  data-ai-hint={service.aiHint}
-                />
-              </div>
-              <div className={`${index % 2 !== 0 ? "lg:order-first" : ""}`}>
-                <div className="inline-flex items-center justify-center p-4 mb-6 rounded-full bg-primary/10 text-primary">
-                  {service.icon}
-                </div>
-                <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{service.title}</h2>
-                <p className="mt-4 text-lg text-muted-foreground leading-relaxed">{service.longDescription}</p>
-                <ul className="mt-6 space-y-3">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center">
-                      <CheckCircle className="mr-3 h-6 w-6 text-primary flex-shrink-0" /> 
-                      <span className="text-muted-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8">
-                  <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-lg">
-                    <Link href={service.href}>
-                       <span className="inline-flex items-center">
-                        Explore {service.title} <ArrowRight className="ml-2 h-5 w-5" />
-                      </span>
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-        <div className="container text-center">
-            <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">Ready to Transform Your Business?</h2>
-            <p className="mt-4 max-w-xl mx-auto text-lg">
-                Contact Hindeshwar Consulting today to learn how our tailored services can help you achieve your strategic goals.
             </p>
-            <div className="mt-8">
+          </div>
+        </section>
+      </AnimatedSection>
+
+        <section className="py-16 md:py-24">
+          <div className="container space-y-20">
+            {services.map((service, index) => (
+              <div key={service.id} id={service.id} className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-16 scroll-mt-20`}>
+                <AnimatedSection
+                  animationType={index % 2 !== 0 ? "slideInFromRight" : "slideInFromLeft"}
+                  className={`aspect-video overflow-hidden rounded-lg shadow-2xl ${index % 2 !== 0 ? "lg:order-last" : ""}`}
+                  delay={150}
+                >
+                  <Image
+                    src={service.image}
+                    alt={service.imageAlt}
+                    width={600}
+                    height={400}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    data-ai-hint={service.aiHint}
+                  />
+                </AnimatedSection>
+                <AnimatedSection
+                  animationType={index % 2 !== 0 ? "slideInFromLeft" : "slideInFromRight"}
+                  className={`${index % 2 !== 0 ? "lg:order-first" : ""}`}
+                  delay={150}
+                >
+                  <div>
+                    <div className="inline-flex items-center justify-center p-4 mb-6 rounded-full bg-primary/10 text-primary">
+                      {service.icon}
+                    </div>
+                    <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{service.title}</h2>
+                    <p className="mt-4 text-lg text-muted-foreground leading-relaxed">{service.longDescription}</p>
+                    <ul className="mt-6 space-y-3">
+                      {service.features.map((feature) => (
+                        <li key={feature} className="flex items-center">
+                          <CheckCircle className="mr-3 h-6 w-6 text-primary flex-shrink-0" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                    ))}
+                    </ul>
+                    <div className="mt-8">
+                      <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-lg">
+                        <Link href={service.href}>
+                          <span className="inline-flex items-center">
+                            Explore {service.title} <ArrowRight className="ml-2 h-5 w-5" />
+                          </span>
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <AnimatedSection animationType="slideInFromBottom" delay={200}>
+          <section className="py-16 md:py-24 bg-primary text-primary-foreground">
+            <div className="container text-center">
+              <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">Ready to Transform Your Business?</h2>
+              <p className="mt-4 max-w-xl mx-auto text-lg">
+                Contact Hindeshwar Consulting today to learn how our tailored services can help you achieve your strategic goals.
+              </p>
+              <div className="mt-8">
                 <Button asChild size="lg" className="text-lg px-8 py-6 bg-background text-primary hover:bg-muted/80 rounded-lg">
-                    <Link href="/contact">Get Started</Link>
+                  <Link href="/contact">Get Started</Link>
                 </Button>
+              </div>
             </div>
-        </div>
-      </section>
-    </div>
+          </section>
+        </AnimatedSection>
+      </div>
   );
 }
