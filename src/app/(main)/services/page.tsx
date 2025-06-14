@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CheckCircle, ArrowRight, BarChart3, Settings, Lightbulb, TrendingUp } from "lucide-react";
 import Link from "next/link";
+import { AnimatedSection } from "@/components/effects/animated-section";
 
 const services = [
   {
@@ -59,6 +60,7 @@ const services = [
 export default function ServicesPage() {
   return (
     <div className="bg-background text-foreground">
+      <AnimatedSection animationType="fadeIn">
         <section className="py-16 md:py-24 bg-secondary">
           <div className="container text-center">
             <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">Our Services</h1>
@@ -67,12 +69,17 @@ export default function ServicesPage() {
             </p>
           </div>
         </section>
+      </AnimatedSection>
 
         <section className="py-16 md:py-24">
           <div className="container space-y-20">
             {services.map((service, index) => (
-              <div key={service.id} id={service.id} className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-16`}>
-                <div className={`aspect-video overflow-hidden rounded-lg shadow-2xl ${index % 2 !== 0 ? "lg:order-last" : ""}`}>
+              <div key={service.id} id={service.id} className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-16 scroll-mt-20`}>
+                <AnimatedSection
+                  animationType={index % 2 !== 0 ? "slideInFromRight" : "slideInFromLeft"}
+                  className={`aspect-video overflow-hidden rounded-lg shadow-2xl ${index % 2 !== 0 ? "lg:order-last" : ""}`}
+                  delay={150}
+                >
                   <Image
                     src={service.image}
                     alt={service.imageAlt}
@@ -81,49 +88,57 @@ export default function ServicesPage() {
                     className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                     data-ai-hint={service.aiHint}
                   />
-                </div>
-                <div className={`${index % 2 !== 0 ? "lg:order-first" : ""}`}>
-                  <div className="inline-flex items-center justify-center p-4 mb-6 rounded-full bg-primary/10 text-primary">
-                    {service.icon}
+                </AnimatedSection>
+                <AnimatedSection
+                  animationType={index % 2 !== 0 ? "slideInFromLeft" : "slideInFromRight"}
+                  className={`${index % 2 !== 0 ? "lg:order-first" : ""}`}
+                  delay={150}
+                >
+                  <div>
+                    <div className="inline-flex items-center justify-center p-4 mb-6 rounded-full bg-primary/10 text-primary">
+                      {service.icon}
+                    </div>
+                    <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{service.title}</h2>
+                    <p className="mt-4 text-lg text-muted-foreground leading-relaxed">{service.longDescription}</p>
+                    <ul className="mt-6 space-y-3">
+                      {service.features.map((feature) => (
+                        <li key={feature} className="flex items-center">
+                          <CheckCircle className="mr-3 h-6 w-6 text-primary flex-shrink-0" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                    ))}
+                    </ul>
+                    <div className="mt-8">
+                      <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-lg">
+                        <Link href={service.href}>
+                          <span className="inline-flex items-center">
+                            Explore {service.title} <ArrowRight className="ml-2 h-5 w-5" />
+                          </span>
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
-                  <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{service.title}</h2>
-                  <p className="mt-4 text-lg text-muted-foreground leading-relaxed">{service.longDescription}</p>
-                  <ul className="mt-6 space-y-3">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center">
-                        <CheckCircle className="mr-3 h-6 w-6 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                  ))}
-                  </ul>
-                  <div className="mt-8">
-                    <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-lg">
-                      <Link href={service.href}>
-                        <span className="inline-flex items-center">
-                          Explore {service.title} <ArrowRight className="ml-2 h-5 w-5" />
-                        </span>
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
+                </AnimatedSection>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-          <div className="container text-center">
-            <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">Ready to Transform Your Business?</h2>
-            <p className="mt-4 max-w-xl mx-auto text-lg">
-              Contact Hindeshwar Consulting today to learn how our tailored services can help you achieve your strategic goals.
-            </p>
-            <div className="mt-8">
-              <Button asChild size="lg" className="text-lg px-8 py-6 bg-background text-primary hover:bg-muted/80 rounded-lg">
-                <Link href="/contact">Get Started</Link>
-              </Button>
+        <AnimatedSection animationType="slideInFromBottom" delay={200}>
+          <section className="py-16 md:py-24 bg-primary text-primary-foreground">
+            <div className="container text-center">
+              <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">Ready to Transform Your Business?</h2>
+              <p className="mt-4 max-w-xl mx-auto text-lg">
+                Contact Hindeshwar Consulting today to learn how our tailored services can help you achieve your strategic goals.
+              </p>
+              <div className="mt-8">
+                <Button asChild size="lg" className="text-lg px-8 py-6 bg-background text-primary hover:bg-muted/80 rounded-lg">
+                  <Link href="/contact">Get Started</Link>
+                </Button>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </AnimatedSection>
       </div>
   );
 }
