@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,11 +16,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { submitContactForm } from "@/actions/contact-actions";
 import { formSchema, type ContactFormValues } from "@/lib/schemas/contact";
 
-export function ContactForm() {
+export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -28,10 +29,16 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
+      subject: defaultSubject || "",
       message: "",
     },
   });
+
+  useEffect(() => {
+    if (defaultSubject) {
+      form.setValue("subject", defaultSubject);
+    }
+  }, [defaultSubject, form]);
 
   async function onSubmit(values: ContactFormValues) {
     setIsSubmitting(true);
@@ -43,6 +50,9 @@ export function ContactForm() {
           description: result.message,
         });
         form.reset();
+        if (defaultSubject) {
+          form.setValue("subject", defaultSubject);
+        }
       } else {
         toast({
           title: "Error",

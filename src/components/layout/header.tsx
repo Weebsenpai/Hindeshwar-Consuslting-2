@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Mountain, Search, BarChart3, Settings, Lightbulb, TrendingUp, ShoppingCart, Apple, Factory, Package } from "lucide-react"; 
+import { Menu, Mountain, Search, BarChart3, Settings, Lightbulb, TrendingUp, ShoppingCart, Apple, Factory, Package, ClipboardPen, Database } from "lucide-react"; 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { NavLinks, type NavItem } from "./nav-links";
@@ -72,6 +72,27 @@ const industryItemsForMegaMenu: NavItem['serviceItems'] = [
   },
 ];
 
+const flagshipServiceItems: NavItem['serviceItems'] = [
+  {
+    icon: ClipboardPen,
+    title: "Food Commodity Market Advisory",
+    description: "Expert advisory for the dynamic food commodity market.",
+    href: "/services/food-commodity-advisory",
+  },
+  {
+    icon: Factory,
+    title: "Third Party Manufacturing (FMCG)",
+    description: "End-to-end third-party manufacturing solutions.",
+    href: "/services/third-party-manufacturing",
+  },
+  {
+    icon: Database,
+    title: "State Wise Directory Data Services",
+    description: "Curated state-wise business directory data.",
+    href: "/services/state-wise-directory",
+  },
+];
+
 
 const navItems: NavItem[] = [
   { href: "/", label: "Home" },
@@ -85,6 +106,7 @@ const navItems: NavItem[] = [
     label: "Services",
     href: "/services", 
     serviceItems: serviceItemsForMegaMenu,
+    flagshipItems: flagshipServiceItems,
   },
   { href: "/products", label: "Products" },
   { href: "/about", label: "About Us" },

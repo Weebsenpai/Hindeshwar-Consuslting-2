@@ -47,6 +47,7 @@ export interface NavItem {
   children?: NavLink[];
   serviceItems?: ServiceItem[];
   isIndustriesMenu?: boolean;
+  flagshipItems?: ServiceItem[];
 }
 
 interface NavLinksProps {
@@ -80,7 +81,7 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
       {items.map((item) => {
         const isActive = item.href ? pathname.startsWith(item.href) : false;
 
-        if (!isMobile && item.serviceItems && item.serviceItems.length > 0) {
+        if (!isMobile && (item.serviceItems || item.flagshipItems) && item.serviceItems.length > 0) {
           const isIndustries = !!item.isIndustriesMenu;
 
           const col1CountServices = 2;
@@ -89,6 +90,7 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
 
           const col1TitleServices = "Core Pillars";
           const col2TitleServices = "Strategic Focus";
+          const col0TitleServices = "Flagship Services";
 
 
           return (
@@ -110,7 +112,10 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
               <HoverCardContent
                 align="center"
                 sideOffset={10}
-                className="w-auto max-w-xl p-4 bg-card text-card-foreground shadow-xl rounded-lg z-[60] border-border"
+                className={cn(
+                  "p-4 bg-card text-card-foreground shadow-xl rounded-lg z-[60] border-border",
+                  item.flagshipItems ? "w-auto max-w-screen-lg" : "w-auto max-w-xl"
+                )}
               >
                 {isIndustries && item.href && (
                   <>
@@ -122,7 +127,10 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                     <Separator className="mb-4 bg-border" />
                   </>
                 )}
-                <div className={cn("grid gap-x-6 gap-y-4", isIndustries ? "grid-cols-2" : "grid-cols-2")}>
+                 <div className={cn(
+                    "grid gap-x-8",
+                    isIndustries ? "grid-cols-2" : (item.flagshipItems ? "grid-cols-[1.5fr_auto_2fr]" : "grid-cols-2")
+                  )}>
                   {isIndustries ? (
                     item.serviceItems.map((industryItem) => (
                       <div key={industryItem.title} className="group/service-item flex flex-col p-3 -m-3 rounded-lg transition-all duration-200 ease-in-out">
@@ -145,11 +153,70 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                     ))
                   ) : (
                     <>
-                      <div> {/* Column 1 for Services */}
-                        <h4 className="font-headline text-[0.9rem] font-semibold text-card-foreground mb-2">{col1TitleServices}</h4>
-                        <div className="space-y-1">
-                          {firstColumnItemsServices.map((service) => (
-                             <div key={service.title} className="group/service-item flex flex-col p-3 -m-3 rounded-lg transition-all duration-200 ease-in-out ">
+                     {item.flagshipItems && (
+                        <>
+                          <div>
+                            <h3 className="font-headline text-base font-semibold text-card-foreground mb-4">{col0TitleServices}</h3>
+                            <div className="flex flex-col gap-1">
+                              {item.flagshipItems.map((service) => (
+                                <Link key={service.href} href={service.href} className="group/flagship flex items-start gap-4 rounded-md p-3 -m-3 hover:bg-accent transition-colors">
+                                  <div className="mt-1 text-primary"><service.icon className="h-5 w-5" /></div>
+                                  <div>
+                                    <p className="font-semibold text-card-foreground text-sm">{service.title}</p>
+                                    <p className="text-xs text-muted-foreground">{service.description}</p>
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="border-l border-border/80" />
+                        </>
+                      )}
+                      
+                      <div className={cn(!item.flagshipItems && "col-span-2", "grid grid-cols-2 gap-x-8")}>
+                        <div> 
+                          <h4 className="font-headline text-[0.9rem] font-semibold text-card-foreground mb-2">{col1TitleServices}</h4>
+                          <div className="space-y-1">
+                            {firstColumnItemsServices.map((service) => (
+                               <div key={service.title} className="group/service-item flex flex-col p-3 -m-3 rounded-lg transition-all duration-200 ease-in-out ">
+                                  <Link
+                                    href={service.href}
+                                    className="flex items-start gap-3"
+                                    prefetch={false}
+                                  >
+                                    <div className="text-primary group-hover/service-item:text-primary mt-1 flex-shrink-0">
+                                      <service.icon className="h-5 w-5" />
+                                    </div>
+                                    <div className="flex-grow">
+                                      <p className="font-semibold text-card-foreground group-hover/service-item:text-primary transition-colors duration-150 text-sm">
+                                        {service.title}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                  {service.subServices && service.subServices.length > 0 && (
+                                    <ul className="mt-1.5 space-y-1 pl-8 list-none">
+                                      {service.subServices.map((subService) => (
+                                        <li key={subService.href}>
+                                          <Link
+                                            href={subService.href}
+                                            className="block text-xs text-card-foreground/70 hover:text-primary hover:underline transition-colors duration-150"
+                                            prefetch={false}
+                                          >
+                                            {subService.label}
+                                          </Link>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="font-headline text-[0.9rem] font-semibold text-card-foreground mb-2">{col2TitleServices}</h4>
+                           <div className="space-y-1">
+                            {secondColumnItemsServices.map((service) => (
+                              <div key={service.title} className="group/service-item flex flex-col p-3 -m-3 rounded-lg transition-all duration-200 ease-in-out ">
                                 <Link
                                   href={service.href}
                                   className="flex items-start gap-3"
@@ -162,9 +229,10 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                                     <p className="font-semibold text-card-foreground group-hover/service-item:text-primary transition-colors duration-150 text-sm">
                                       {service.title}
                                     </p>
+
                                   </div>
                                 </Link>
-                                {service.subServices && service.subServices.length > 0 && (
+                                 {service.subServices && service.subServices.length > 0 && (
                                   <ul className="mt-1.5 space-y-1 pl-8 list-none">
                                     {service.subServices.map((subService) => (
                                       <li key={subService.href}>
@@ -180,46 +248,8 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                                   </ul>
                                 )}
                               </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div> {/* Column 2 for Services */}
-                        <h4 className="font-headline text-[0.9rem] font-semibold text-card-foreground mb-2">{col2TitleServices}</h4>
-                         <div className="space-y-1">
-                          {secondColumnItemsServices.map((service) => (
-                            <div key={service.title} className="group/service-item flex flex-col p-3 -m-3 rounded-lg transition-all duration-200 ease-in-out ">
-                              <Link
-                                href={service.href}
-                                className="flex items-start gap-3"
-                                prefetch={false}
-                              >
-                                <div className="text-primary group-hover/service-item:text-primary mt-1 flex-shrink-0">
-                                  <service.icon className="h-5 w-5" />
-                                </div>
-                                <div className="flex-grow">
-                                  <p className="font-semibold text-card-foreground group-hover/service-item:text-primary transition-colors duration-150 text-sm">
-                                    {service.title}
-                                  </p>
-
-                                </div>
-                              </Link>
-                               {service.subServices && service.subServices.length > 0 && (
-                                <ul className="mt-1.5 space-y-1 pl-8 list-none">
-                                  {service.subServices.map((subService) => (
-                                    <li key={subService.href}>
-                                      <Link
-                                        href={subService.href}
-                                        className="block text-xs text-card-foreground/70 hover:text-primary hover:underline transition-colors duration-150"
-                                        prefetch={false}
-                                      >
-                                        {subService.label}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </>
@@ -295,7 +325,7 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
             </DropdownMenu>
           );
         } else if (item.href) {
-          if (isMobile && item.serviceItems && item.serviceItems.length > 0) {
+          if (isMobile && (item.serviceItems || item.flagshipItems)) {
              return (
                 <div key={item.label} className="w-full">
                     <SheetClose asChild>
@@ -307,20 +337,39 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                         {item.label}
                         </Link>
                     </SheetClose>
-                    <div className="ml-0 mt-1 space-y-1 pt-1">
-                    {item.serviceItems.map(serviceLink => (
-                         <SheetClose asChild key={serviceLink.href}>
-                             <Link
-                                href={serviceLink.href}
-                                className={cn(navLinkClasses(serviceLink.href, item.disabled, false, pathname.startsWith(serviceLink.href)), "flex items-center gap-3 p-2 rounded-md hover:bg-accent/20")}
-                             >
-                                <serviceLink.icon className="h-5 w-5 text-primary flex-shrink-0" />
-                                <div>
+                    <div className="ml-0 mt-1 space-y-1 pt-1 border-t mt-2">
+                      {item.flagshipItems && (
+                        <>
+                          <p className="px-3 py-2 text-sm font-semibold text-muted-foreground">Flagship Services</p>
+                          {item.flagshipItems.map(serviceLink => (
+                            <SheetClose asChild key={serviceLink.href}>
+                                <Link
+                                  href={serviceLink.href}
+                                  className={cn(navLinkClasses(serviceLink.href, item.disabled, false, pathname.startsWith(serviceLink.href)), "flex items-center gap-3 p-2 rounded-md hover:bg-accent/20")}
+                                >
+                                  <serviceLink.icon className="h-5 w-5 text-primary flex-shrink-0" />
                                   <span className="block text-sm text-foreground">{serviceLink.title}</span>
-                                </div>
-                             </Link>
-                         </SheetClose>
-                     ))}
+                                </Link>
+                            </SheetClose>
+                          ))}
+                        </>
+                      )}
+                      {item.serviceItems && (
+                        <>
+                          <p className="px-3 py-2 text-sm font-semibold text-muted-foreground">Core Services</p>
+                          {item.serviceItems.map(serviceLink => (
+                            <SheetClose asChild key={serviceLink.href}>
+                                <Link
+                                  href={serviceLink.href}
+                                  className={cn(navLinkClasses(serviceLink.href, item.disabled, false, pathname.startsWith(serviceLink.href)), "flex items-center gap-3 p-2 rounded-md hover:bg-accent/20")}
+                                >
+                                  <serviceLink.icon className="h-5 w-5 text-primary flex-shrink-0" />
+                                  <span className="block text-sm text-foreground">{serviceLink.title}</span>
+                                </Link>
+                            </SheetClose>
+                          ))}
+                        </>
+                      )}
                     </div>
                 </div>
              );
