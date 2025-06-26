@@ -8,6 +8,15 @@ import { Label } from '@/components/ui/label';
 import type { Product } from '@/lib/products-data';
 import Image from 'next/image';
 import { X, Pencil } from 'lucide-react';
+import { useState } from 'react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 
 interface EnquiryModalProps {
   product: Product;
@@ -16,6 +25,7 @@ interface EnquiryModalProps {
 }
 
 export function EnquiryModal({ product, isOpen, onOpenChange }: EnquiryModalProps) {
+  const [unit, setUnit] = useState('Ton');
   if (!isOpen) return null;
 
   return (
@@ -53,13 +63,16 @@ export function EnquiryModal({ product, isOpen, onOpenChange }: EnquiryModalProp
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="units" className="text-xs text-muted-foreground">Measurement Units</Label>
-                   <div className="relative">
-                    <Input id="units" value="Ton" readOnly className="pr-16" />
-                    <Button variant="ghost" size="sm" className="absolute inset-y-0 right-0 h-full text-primary hover:bg-transparent">
-                        <Pencil className="h-3 w-3 mr-1" />
-                        Edit
-                    </Button>
-                   </div>
+                  <Select value={unit} onValueChange={setUnit}>
+                    <SelectTrigger id="units">
+                      <SelectValue placeholder="Select a unit" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="gm">gm</SelectItem>
+                      <SelectItem value="kg">kg</SelectItem>
+                      <SelectItem value="Ton">Ton</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 
