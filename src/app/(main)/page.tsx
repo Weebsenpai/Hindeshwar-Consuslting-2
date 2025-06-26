@@ -45,7 +45,7 @@ export default function HomePage() {
             src={heroImageDataUri}
             alt="Global business strategy for Hindeshwar Consulting"
             fill
-            className="opacity-60 dark:opacity-30 object-cover object-[center_20%] mix-blend-multiply"
+            className="opacity-60 mix-blend-multiply dark:opacity-50 dark:mix-blend-normal object-cover object-[center_20%]"
             data-ai-hint={heroImagePrompt} 
             priority
           />
