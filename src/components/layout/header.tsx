@@ -6,6 +6,7 @@ import { Menu, Mountain, Search, BarChart3, Settings, Lightbulb, TrendingUp, Sho
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { NavLinks, type NavItem } from "./nav-links";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 const serviceItemsForMegaMenu: NavItem['serviceItems'] = [
   {
@@ -92,7 +93,7 @@ const navItems: NavItem[] = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background shadow-md">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm shadow-md">
       <div className="container flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
           <Mountain className="h-8 w-8 text-primary" />
@@ -107,6 +108,7 @@ export function Header() {
             <Button variant="ghost" size="icon" aria-label="Search" className="text-foreground hover:text-primary">
               <Search className="h-5 w-5" />
             </Button>
+            <ThemeSwitcher />
           </div>
           <Sheet>
             <SheetTrigger asChild>
@@ -132,6 +134,10 @@ export function Header() {
                    <Button variant="ghost" size="lg" aria-label="Search" className="text-foreground hover:text-primary justify-start">
                     <Search className="mr-2 h-5 w-5" /> Search
                   </Button>
+                  <div className="flex items-center justify-between rounded-lg border p-2">
+                    <span className="text-sm font-medium text-foreground">Switch Theme</span>
+                    <ThemeSwitcher />
+                  </div>
                 </div>
               </div>
             </SheetContent>

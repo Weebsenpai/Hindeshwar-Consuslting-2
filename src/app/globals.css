@@ -4,72 +4,69 @@
 
 @layer base {
   :root {
-    --background: 220 15% 12%; /* Dark cool gray/charcoal */
-    --foreground: 220 10% 88%; /* Light gray for text */
-
-    --card: 0 0% 100%; /* White for cards/popovers like mega menu */
-    --card-foreground: 220 25% 15%; /* Dark text for cards */
-
-    --popover: 0 0% 100%; /* White for popovers */
-    --popover-foreground: 220 25% 15%; /* Dark text for popovers */
-
-    --primary: 207 75% 55%; /* Vibrant Blue */
-    --primary-foreground: 0 0% 100%; /* White text on blue */
-
-    --secondary: 220 15% 25%; /* Darker shade of background for secondary elements */
-    --secondary-foreground: 220 10% 75%; /* Slightly darker light gray */
-
-    --muted: 220 15% 20%; /* Muted dark shade */
-    --muted-foreground: 220 10% 60%; /* Muted light gray */
-
-    --accent: 207 80% 60%; /* Slightly brighter Blue for accents */
-    --accent-foreground: 0 0% 100%; /* White text on accent */
-
-    --destructive: 0 70% 50%; 
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 220 15% 30%; /* Border for dark theme */
-    --input: 220 15% 18%; /* Dark input background */
-    --input-foreground: 220 10% 88%; /* Light text for input */
-    --ring: 207 75% 60%; /* Blue for focus rings */
-
-    --radius: 0.5rem;
-
-    /* Sidebar variables (kept from original for shadcn components that might use them) */
-    --sidebar-background: 220 15% 8%;
-    --sidebar-foreground: 220 10% 90%;
-    --sidebar-primary: 207 75% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 15%;
-    --sidebar-accent-foreground: 220 10% 90%;
-    --sidebar-border: 220 15% 25%;
-    --sidebar-ring: 207 75% 60%;
-  }
-
-  .dark {
-    /* Using the same values as :root for a consistent dark theme */
-    --background: 220 15% 12%;
-    --foreground: 220 10% 88%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 25% 15%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 15%;
+    --popover-foreground: 222.2 84% 4.9%;
 
     --primary: 207 75% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 25%; 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 215.4 16.3% 46.9%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 98%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 220 15% 97%;
+    --sidebar-foreground: 220 10% 20%;
+    --sidebar-primary: 207 75% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 92%;
+    --sidebar-accent-foreground: 220 10% 15%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 207 75% 60%;
+  }
+
+  .dark {
+    --background: 220 15% 12%;
+    --foreground: 220 10% 88%;
+
+    --card: 220 15% 15%;
+    --card-foreground: 220 10% 88%;
+
+    --popover: 220 15% 12%;
+    --popover-foreground: 220 10% 88%;
+
+    --primary: 207 75% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 25%;
     --secondary-foreground: 220 10% 75%;
 
     --muted: 220 15% 20%;
     --muted-foreground: 220 10% 60%;
 
-    --accent: 207 80% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 220 15% 25%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 70% 55%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 220 15% 30%;
