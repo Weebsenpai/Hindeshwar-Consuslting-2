@@ -100,7 +100,7 @@ export function ProductDetailClient({ product }: { product: Product }) {
           <AnimatedSection animationType="slideInFromBottom" delay={150}>
               <Card className="mt-12 border-border bg-background shadow-2xl">
                   <CardHeader>
-                      <CardTitle className="font-headline text-2xl flex items-center">
+                      <CardTitle className="font-headline text-2xl flex items-center text-foreground">
                           <Package className="mr-3 h-6 w-6 text-primary" /> Product Details
                       </CardTitle>
                   </CardHeader>
