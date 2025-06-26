@@ -45,11 +45,11 @@ export default function HomePage() {
             src={heroImageDataUri}
             alt="Global business strategy for Hindeshwar Consulting"
             fill
-            className="opacity-15 object-cover object-[center_20%]"
+            className="opacity-60 dark:opacity-30 object-cover object-[center_20%] mix-blend-multiply"
             data-ai-hint={heroImagePrompt} 
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
         </div>
         <div className="container relative z-10 text-center">
           <h1 className="font-headline text-4xl font-black tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
