@@ -133,7 +133,7 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                       <Link
                         key={industryItem.title}
                         href={industryItem.href}
-                        className="group/service-item flex items-center gap-3 rounded-lg p-3 -m-3 transition-colors hover:bg-accent"
+                        className="group/service-item flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-accent"
                         prefetch={false}
                       >
                         <div className="flex-shrink-0 text-primary">
