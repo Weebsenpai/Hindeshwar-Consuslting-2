@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Mountain, Search, BarChart3, Settings, Lightbulb, TrendingUp, ShoppingCart, Apple, Factory } from "lucide-react"; 
+import { Menu, Mountain, Search, BarChart3, Settings, Lightbulb, TrendingUp, ShoppingCart, Apple, Factory, Package } from "lucide-react"; 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { NavLinks, type NavItem } from "./nav-links";
@@ -85,6 +85,7 @@ const navItems: NavItem[] = [
     href: "/services", 
     serviceItems: serviceItemsForMegaMenu,
   },
+  { href: "/products", label: "Products" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
 ];

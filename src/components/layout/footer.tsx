@@ -37,6 +37,7 @@ export function Footer() {
             <h4 className="font-headline text-lg font-semibold mb-4 text-foreground">Quick Links</h4>
             <ul className="space-y-3">
               <li><Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Services</Link></li>
+              <li><Link href="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Products</Link></li>
               <li><Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>About Us</Link></li>
               <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Contact</Link></li>
               <li><Link href="/cta-generator" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>AI Tools</Link></li>
@@ -45,10 +46,10 @@ export function Footer() {
           <div>
             <h4 className="font-headline text-lg font-semibold mb-4 text-foreground">Our Expertise</h4>
             <ul className="space-y-3">
-              <li><Link href="/services/data-analytics/strategy-analysis" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Data & Analytics</Link></li>
-              <li><Link href="/services/operational-excellence/process-reengineering" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Operational Excellence</Link></li>
-              <li><Link href="/services/digital-transformation/strategy-analysis" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Digital Transformation</Link></li>
-              <li><Link href="/services/revenue-growth/sales-channel-management" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Revenue Growth</Link></li>
+              <li><Link href="/services/data-analytics" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Data & Analytics</Link></li>
+              <li><Link href="/services/operational-excellence" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Operational Excellence</Link></li>
+              <li><Link href="/services/digital-transformation" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Digital Transformation</Link></li>
+              <li><Link href="/services/revenue-growth" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Revenue Growth</Link></li>
             </ul>
           </div>
            <div>
