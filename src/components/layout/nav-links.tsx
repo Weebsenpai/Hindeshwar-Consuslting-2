@@ -157,7 +157,7 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                         <>
                           <div>
                             <h3 className="font-headline text-base font-semibold text-card-foreground mb-4">{col0TitleServices}</h3>
-                            <div className="flex flex-col gap-1">
+                            <div className="flex flex-col gap-3">
                               {item.flagshipItems.map((service) => (
                                 <Link key={service.href} href={service.href} className="group/flagship flex items-start gap-4 rounded-md p-3 -m-3 hover:bg-accent transition-colors">
                                   <div className="mt-1 text-primary"><service.icon className="h-5 w-5" /></div>
