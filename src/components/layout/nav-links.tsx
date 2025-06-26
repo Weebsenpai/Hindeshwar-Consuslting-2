@@ -114,7 +114,7 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                 sideOffset={10}
                 className={cn(
                   "p-4 bg-card text-card-foreground shadow-xl rounded-lg z-[60] border-border",
-                  item.flagshipItems ? "w-auto max-w-screen-lg" : "w-auto max-w-xl"
+                  isIndustries ? "w-80" : (item.flagshipItems ? "w-auto max-w-screen-lg" : "w-auto max-w-xl")
                 )}
               >
                 {isIndustries && item.href && (
@@ -127,32 +127,28 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                     <Separator className="mb-4 bg-border" />
                   </>
                 )}
-                 <div className={cn(
-                    "grid gap-x-8",
-                    isIndustries ? "grid-cols-2" : (item.flagshipItems ? "grid-cols-[1.5fr_auto_2fr]" : "grid-cols-2")
-                  )}>
-                  {isIndustries ? (
-                    item.serviceItems.map((industryItem) => (
-                      <div key={industryItem.title} className="group/service-item flex flex-col p-3 -m-3 rounded-lg transition-all duration-200 ease-in-out">
-                        <Link
-                          href={industryItem.href}
-                          className="flex items-start gap-3"
-                          prefetch={false}
-                        >
-                          <div className="text-primary mt-1 flex-shrink-0">
-                            <industryItem.icon className="h-5 w-5" />
-                          </div>
-                          <div className="flex-grow">
-                            <p className="font-semibold text-card-foreground group-hover/service-item:text-primary transition-colors duration-150 text-sm">
-                              {industryItem.title}
-                            </p>
-
-                          </div>
-                        </Link>
-                      </div>
-                    ))
-                  ) : (
-                    <>
+                {isIndustries ? (
+                  <div className="flex flex-col gap-1">
+                    {item.serviceItems.map((industryItem) => (
+                      <Link
+                        key={industryItem.title}
+                        href={industryItem.href}
+                        className="group/service-item flex items-center gap-3 rounded-lg p-3 -m-3 transition-colors hover:bg-accent"
+                        prefetch={false}
+                      >
+                        <div className="flex-shrink-0 text-primary">
+                          <industryItem.icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-grow">
+                          <p className="text-sm font-semibold text-card-foreground transition-colors group-hover/service-item:text-primary">
+                            {industryItem.title}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className={cn("grid gap-x-8", item.flagshipItems ? "grid-cols-[1.5fr_auto_2fr]" : "grid-cols-2")}>
                      {item.flagshipItems && (
                         <>
                           <div>
@@ -252,9 +248,8 @@ export function NavLinks({ items, isMobile = false }: NavLinksProps) {
                           </div>
                         </div>
                       </div>
-                    </>
-                  )}
-                </div>
+                  </div>
+                )}
               </HoverCardContent>
             </HoverCard>
           );
