@@ -2,7 +2,7 @@
 'use client';
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { ContactForm } from '@/components/forms/contact-form';
+import { ServiceEnquiryForm } from '@/components/forms/service-enquiry-form';
 
 interface ServiceEnquiryModalProps {
   serviceName: string;
@@ -23,7 +23,7 @@ export function ServiceEnquiryModal({ serviceName, isOpen, onOpenChange }: Servi
           </DialogDescription>
         </DialogHeader>
         <div className="mt-4">
-          <ContactForm defaultSubject={`Enquiry about ${serviceName}`} />
+          <ServiceEnquiryForm serviceName={serviceName} />
         </div>
       </DialogContent>
     </Dialog>
